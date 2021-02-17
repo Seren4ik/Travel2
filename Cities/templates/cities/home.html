@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Home city
+{% endblock %}
+
+{% block content %}
+<H2>Список городов:</H2>
+<div class="row">
+    <div class="col-md mx-auto my-3">
+        <table class="table table-success table-striped">
+            {% for city in page_obj %}
+            <tr>
+                <td>
+                    <a href="{% url 'Cities:detail' pk=city.pk%}">{{city.name}}</a>
+                </td>
+
+                <td>
+                    <a href="{% url 'Cities:update' pk=city.pk%}">
+                        <button type="submit" class="btn btn-light">Редактировать</button>
+                    </a>
+                </td>
+
+                <td>
+                    <a href="{% url 'Cities:delete' pk=city.pk%}">
+                        <button type="submit" class="btn btn-light">Удалить</button>
+                    </a>
+                </td>
+            </tr>
+
+            {% endfor %}
+        </table>
+    </div>
+</div>
+
+<nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+        <li class="page-item">
+            {% if page_obj.has_previous %}
+            <a class="page-link" href="?page={{ page_obj.previous_page_number }}">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+            {% endif %}
+        </li>
+
+        {% for page in page_obj.paginator.page_range %}
+
+        <li class="page-item {% if page == page_obj.number %} active {% endif %}">
+            <a class="page-link" href="?page={{ page }}">{{page}}</a>
+        </li>
+
+        {% endfor %}
+
+        <li class="page-item">
+            {% if page_obj.has_next %}
+            <a class="page-link" href="?page={{ page_obj.next_page_number }}">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+            {% endif %}
+        </li>
+    </ul>
+</nav>
+
+<div class="row">
+    <div class="col-md-4">
+        <form action="{% url 'Cities:create' %}" method="post"> {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Сохранить">
+        </form>
+    </div>
+</div>
+
+{% endblock %}
