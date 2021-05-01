@@ -5,7 +5,7 @@ from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import DetailView, CreateView, UpdateView, DeleteView, ListView
 
-from Cities.forms import HtmlForm, CityForm
+from Cities.forms import CityForm
 from Cities.models import City
 
 __all__ = ('home','CityDetailView', 'CityCreateView', 'CityUpdateView', 'CityDeleteView', 'CityView')

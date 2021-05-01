@@ -3,9 +3,6 @@
         <form action="{{action}}" method="post"> {% csrf_token %}
             {{ form.as_p }}
             <button type="submit" class="btn btn-light">{{ button }}</button>
-            <a href="{% url 'Cities:home' %}">
-            <button type="button" class="btn btn-light"> Назад к списку </button>
-        </a>
         </form>
     </div>
 </div>

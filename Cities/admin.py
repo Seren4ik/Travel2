@@ -2,4 +2,9 @@ from django.contrib import admin
 
 from Cities.models import City
 
-admin.site.register(City)
+
+class CityAdmin(admin.ModelAdmin):
+    list_display = ('id', 'name',)
+
+
+admin.site.register(City, CityAdmin)

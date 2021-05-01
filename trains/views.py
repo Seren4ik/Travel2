@@ -7,7 +7,7 @@ from django.views.generic import DetailView, CreateView, UpdateView, DeleteView,
 
 
 from trains.models import Train
-from trains.forms import TrainsForm
+from trains.forms import TrainForm
 
 __all__ = ('home', 'TrainView', 'TrainDetailView', 'TrainCreateView', 'TrainUpdateView', 'TrainDeleteView')
 
@@ -34,15 +34,15 @@ class TrainDetailView(DetailView):
 
 class TrainCreateView(SuccessMessageMixin, CreateView):
     model = Train
-    form_class = TrainsForm
+    form_class = TrainForm
     template_name = 'trains/create.html'
     success_url = reverse_lazy('trains:home')
-    success_message = "Город успешно создан"
+    success_message = "Поезд успешно создан"
 
 
 class TrainUpdateView(SuccessMessageMixin, UpdateView):
     model = Train
-    form_class = TrainsForm
+    form_class = TrainForm
     template_name = 'trains/update.html'
     success_url = reverse_lazy('trains:home')
     success_message = "Поезд успешно отредактирован"
